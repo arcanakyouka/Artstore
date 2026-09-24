@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ArcanaKyouka | About</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      button.icon-link {
+        padding: 0;
+        background: transparent;
+        cursor: pointer;
+      }
+
+      .search-drawer {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        display: none;
+        padding: 22px 0 26px;
+        background: rgba(23, 19, 16, 0.98);
+        border-bottom: 1px solid var(--line);
+        box-shadow: 0 18px 30px var(--shadow);
+      }
+
+      .search-drawer.is-open {
+        display: block;
+      }
+
+      .search-drawer-inner {
+        max-width: 760px;
+        margin: 0 auto;
+        padding: 0 28px;
+      }
+
+      .search-form {
+        display: flex;
+        gap: 12px;
+      }
+
+      .search-input {
+        flex: 1;
+        min-height: 46px;
+        border: 1px solid var(--line);
+        background: rgba(255, 255, 255, 0.04);
+        color: var(--ink);
+        padding: 0 14px;
+        font: inherit;
+      }
+
+      .search-input:focus {
+        outline: 1px solid var(--gold);
+        outline-offset: 2px;
+      }
+
+      .search-results {
+        display: grid;
+        gap: 8px;
+        margin-top: 16px;
+      }
+
+      .search-result {
+        display: flex;
+        justify-content: space-between;
+        gap: 18px;
+        padding: 10px 0;
+        border-bottom: 1px solid rgba(216, 183, 123, 0.16);
+        color: var(--muted);
+      }
+
+      .search-result strong {
+        color: var(--ink);
+        font-family: "Cormorant Garamond", serif;
+        font-size: 1.3rem;
+        font-weight: 600;
+      }
+
+      .search-result:hover strong,
+      .search-result:focus-visible strong {
+        color: var(--gold);
+      }
+
+      .search-empty {
+        color: var(--muted);
+        margin: 14px 0 0;
+      }
+
+      .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
+
+      @media (max-width: 640px) {
+        .search-drawer-inner {
+          padding: 0 18px;
+        }
+
+        .search-form {
+          flex-direction: column;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="topbar">Free shipping on purchases above $100</div>
+
+    <header class="site-header">
+      <div class="container nav-wrap">
+        <nav class="nav-left" aria-label="Main navigation">
+          <a class="brand-name" href="artcite.html">ArcanaKyouka</a>
+          <a class="nav-link" href="shop.html">Shop</a>
+          <a class="nav-link" href="about.html">About</a>
+          <a class="nav-link" href="gallery.html">Gallery</a>
+        </nav>
+
+        <div class="brand-center" aria-label="Brand logo">
+          <div class="logo-mark"><span>AK</span></div>
+        </div>
+
+        <nav class="nav-right" aria-label="Account and cart navigation">
+          <a class="nav-link" href="account.html">Account</a>
+          <button class="icon-link" id="search-toggle" type="button" aria-label="Open search" aria-expanded="false" aria-controls="search-drawer">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="11" cy="11" r="6"></circle>
+              <path d="M16 16L21 21"></path>
+            </svg>
+          </button>
+          <a class="icon-link" href="cart.html" aria-label="Cart">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="9" cy="18" r="1.5"></circle>
+              <circle cx="17" cy="18" r="1.5"></circle>
+              <path d="M3 4h2l2.4 10.2A1 1 0 0 0 8.4 15h8.8a1 1 0 0 0 1-.8L20 7H6"></path>
+            </svg>
+          </a>
+        </nav>
+      </div>
+
+      <aside class="search-drawer" id="search-drawer" aria-label="Search the collection">
+        <div class="search-drawer-inner">
+          <form class="search-form" id="search-form" role="search">
+            <label class="sr-only" for="search-input">Search the collection</label>
+            <input class="search-input" id="search-input" type="search" placeholder="Search the collection" autocomplete="off" />
+            <button class="btn btn-primary" type="submit">Search</button>
+          </form>
+          <div class="search-results" id="search-results"></div>
+          <p class="search-empty" id="search-empty">Try searching for a print, portrait, or gallery work.</p>
+        </div>
+      </aside>
+    </header>
+
+    <main class="container">
+      <div class="page-header">
+        <div class="page-hero">
+          <h1>About the Artist</h1>
+          <p>Arcana Kyouka • Illustrations • Storytelling</p>
+        </div>
+      </div>
+
+      <section class="section about-grid" aria-label="Artist biography">
+        <div class="about-image" style="background-image: url('https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=1100&q=80');"></div>
+
+        <div class="about-copy">
+          <h2>Where myth, memory, and dream collide.</h2>
+          <p>
+            Arcana Kyouka is an independent artist focused on fantasy illustration, story-rich worlds,
+            and collectible art prints inspired by mythology, folklore, and surreal imagination.
+          </p>
+          <p>
+            The work explores strange beauty, forgotten rituals, and dreamlike landscapes where ordinary
+            objects carry hidden meaning. Each piece is designed to feel like a fragment of a larger story.
+          </p>
+          <p>
+            From character portraits to atmospheric scenes, the goal is to build a visual archive of things
+            that feel uncanny, luminous, and deeply personal.
+          </p>
+        </div>
+      </section>
+
+      <div class="feature-band">
+        <div class="container feature-row">
+          <div class="feature-item">
+            <strong>Mediums</strong>
+            <span>Digital illustration, fantasy portraiture, concept art, and collectible prints.</span>
+          </div>
+          <div class="feature-item">
+            <strong>Influences</strong>
+            <span>Mythology, folklore, anime, games, and atmospheric art traditions.</span>
+          </div>
+          <div class="feature-item">
+            <strong>Theme</strong>
+            <span>Dreamlike scenes and symbolic stories told through luminous, eerie imagery.</span>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script>
+      const searchToggle = document.querySelector("#search-toggle");
+      const searchDrawer = document.querySelector("#search-drawer");
+      const searchForm = document.querySelector("#search-form");
+      const searchInput = document.querySelector("#search-input");
+      const searchResults = document.querySelector("#search-results");
+      const searchEmpty = document.querySelector("#search-empty");
+      const searchItems = [
+        { title: "Glass Rose", type: "Archival print", url: "product.html", search: "glass rose archival print" },
+        { title: "Moonlit Archive", type: "Limited edition", url: "moonlit-archive.html", search: "moonlit archive limited edition" },
+        { title: "The Apothecary", type: "Collector piece", url: "the-apothecary.html", search: "the apothecary collector piece" },
+        { title: "Verdant Sigil", type: "Premier release", url: "verdant-sigil.html", search: "verdant sigil premier release" },
+        { title: "Rose Petal", type: "Illustration", url: "rose-petal.html", search: "rose petal illustration" },
+        { title: "Lantern Keeper", type: "Character", url: "lantern-keeper.html", search: "lantern keeper character" },
+        { title: "Moth Valley", type: "Environment", url: "moth-valley.html", search: "moth valley environment" },
+        { title: "Ashen Crown", type: "Portrait", url: "ashen-crown.html", search: "ashen crown portrait inspiration" }
+      ];
+
+      function updateSearchResults() {
+        const query = searchInput.value.trim().toLowerCase();
+        const matches = searchItems.filter((item) => !query || item.search.includes(query));
+
+        searchResults.innerHTML = matches
+          .slice(0, 5)
+          .map((item) => `<a class="search-result" href="${item.url}"><strong>${item.title}</strong><span>${item.type}</span></a>`)
+          .join("");
+        searchEmpty.hidden = matches.length > 0;
+        searchEmpty.textContent = query ? "No matching works found." : "Try searching for a print, portrait, or gallery work.";
+      }
+
+      function closeSearch() {
+        searchDrawer.classList.remove("is-open");
+        searchToggle.setAttribute("aria-expanded", "false");
+      }
+
+      searchToggle.addEventListener("click", () => {
+        const isOpen = searchDrawer.classList.toggle("is-open");
+        searchToggle.setAttribute("aria-expanded", String(isOpen));
+        if (isOpen) {
+          searchInput.focus();
+          updateSearchResults();
+        }
+      });
+
+      searchForm.addEventListener("submit", (event) => {
+        event.preventDefault();
+        updateSearchResults();
+      });
+
+      searchInput.addEventListener("input", updateSearchResults);
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") closeSearch();
+      });
+    </script>
+  </body>
+</html>
