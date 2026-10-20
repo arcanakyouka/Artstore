@@ -277,6 +277,8 @@ h1 {
   gap: 22px;
 }
 .product-link { display: block; }
+.section[aria-label="Print catalog"] .product-grid > .product-link:not(:first-child),
+.section[aria-label="Gallery collection"] .product-grid > .product-link:not(:first-child) { display: none; }
 .product-card {
   background: rgba(22, 18, 16, 0.85);
   border: 1px solid rgba(216, 183, 123, 0.2);
